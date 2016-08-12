@@ -68,7 +68,7 @@ class SoundCloudAuthenticator {
 
     private func isRedirectToApp(url: NSURL) -> Bool {
         if let ourScheme = NSURL(string: self.oauthState.redirectUri)?.scheme,
-               redirectScheme = url.scheme {
+               redirectScheme = url.scheme as? String {
             return ourScheme == redirectScheme
         }
         return false
@@ -95,9 +95,9 @@ class SoundCloudAuthenticator {
     }
 
     private func parameterValue(name: String, fragment: String) -> String? {
-        let pairs = split(fragment) { $0 == "&" }.filter({ pair in pair.hasPrefix(name + "=") })
+        let pairs = fragment.characters.split { $0 == "&" }.map { String($0) }.filter({ pair in pair.hasPrefix(name + "=") })
         if pairs.count > 0 {
-            return split(pairs[0]) { $0 == "=" }[1]
+            return pairs[0].characters.split { $0 == "=" }.map { String($0) }[1]
         } else {
             return nil
         }

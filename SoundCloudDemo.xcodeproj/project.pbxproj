@@ -163,6 +163,8 @@
 		796434D31B034C9B00DC92FA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = SoundCloud;
 				TargetAttributes = {

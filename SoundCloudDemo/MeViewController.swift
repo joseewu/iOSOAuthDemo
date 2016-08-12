@@ -3,9 +3,9 @@ import UIKit
 class MeViewController: UIViewController, SoundCloudLoginResultsDelegate {
 
     let oauthState = OAuthState(
-        clientId: "Put your client ID here",
-        clientSecret: "Put your client secret here",
-        redirectUri: "Put your redirect URI here",
+        clientId: "70dd6cb1f3807a0d2032161d666b5f87",
+        clientSecret: "74ee9d23325f63db4a93446d4ea8e44c",
+        redirectUri: "dailystreaming://soundcloud.com/callback",
         responseType: OAuthResponseType.Token)
 
     var authResult: AuthenticationResult?
@@ -48,7 +48,7 @@ class MeViewController: UIViewController, SoundCloudLoginResultsDelegate {
                                    delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
 
         let dataTask = session.dataTaskWithURL(url) { (data, response, error) -> Void in
-            if let jsonOutput = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String:AnyObject] {
+            if let jsonOutput = (try? NSJSONSerialization.JSONObjectWithData((data)!, options: [])) as? [String:AnyObject] {
                 self.displayMe(jsonOutput)
             }
         }
